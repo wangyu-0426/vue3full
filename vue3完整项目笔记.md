@@ -141,10 +141,10 @@ git add .
 git commit -a
 ```
 
-远程库
+提价远程库
 
 ```cmd
-git remote
+git remote vue3full
 ```
 
 
