@@ -6,6 +6,7 @@ const store = useStore()  // 该方法用于返回store 实例
 const piniaStore = usePiniaStore()
 </script>
 <template>
+    <h1>Home</h1>
     <div>
         <a href="https://vitejs.dev" target="_blank">
             <img src="/vite.svg" class="logo" alt="Vite logo">
