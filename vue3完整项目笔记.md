@@ -102,6 +102,34 @@ package.json
 
 
 
+##### 版本控制
+
+安装git，https://gitforwindows.org/
+
+项目初始化命令，生成 .git 文件夹
+
+```cmd
+git init
+```
+
+全局配置用户名和邮箱
+
+```cmd
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+```
+
+![img](https://pics7.baidu.com/feed/d833c895d143ad4b60257e17714561a7a50f06a9.png?token=a42dd236fa8a0687ae0e4d0690cfd322)
+
+| 工作目录   | 暂存区        | 本地repo        | 远程repo    |
+| ---------- | ------------- | --------------- | ----------- |
+| git add => | git commit => | git push =>     |             |
+|            |               |                 | <= git pull |
+|            | <=            | <= git checkout |             |
+|            | <=            | <= git merge    |             |
+
+
+
 
 
 ##### 配置husky、lint-staged
@@ -115,21 +143,6 @@ package.json配置script
 ```
   "prepare": "husky install",
   "lint-staged": "lint-staged"
-```
-
-> 安装git，https://gitforwindows.org/
-
-项目初始化命令，生成 .git 文件夹
-
-```cmd
-git init
-```
-
-全局配置用户名和邮箱
-
-```cmd
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
 ```
 
 
@@ -596,5 +609,3 @@ https://www.npmjs.com/package/rollup-plugin-visualizer
 ```cmd
 npm install rollup-plugin-visualizer -D
 ```
-
-测试修改 0820
