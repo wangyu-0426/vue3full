@@ -128,6 +128,19 @@ git config --global user.email johndoe@example.com
 |            | <=            | <= git checkout |             |
 |            | <=            | <= git merge    |             |
 
+将文件添加至暂存区
+
+```cmd
+git add *
+git add .
+```
+
+提交
+
+```cmd
+git commit -a
+```
+
 
 
 
