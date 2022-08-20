@@ -18,3 +18,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 app.mount('#app')
+
+type a = number | string
+const b: a = {}
+console.log(b)

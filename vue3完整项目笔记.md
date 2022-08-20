@@ -135,17 +135,40 @@ git add *
 git add .
 ```
 
-提交全部修改
+提交全部修改，不用添加到暂存
 
 ```cmd
-git commit -a
+git commit -a -m "commit message"
 ```
 
-提价远程库
+提交远程库
 
 ```cmd
-git remote vue3full
+git push
 ```
+
+从远程库拉取
+
+```cmd
+git pull
+```
+
+从远程库克隆
+
+```cmd
+git clone 
+```
+
+查看版本号，回滚
+
+```cmd
+git log
+git reset --hard 版本号
+```
+
+处理分支
+
+处理冲突
 
 
 
@@ -628,5 +651,4 @@ https://www.npmjs.com/package/rollup-plugin-visualizer
 ```cmd
 npm install rollup-plugin-visualizer -D
 ```
-
 
