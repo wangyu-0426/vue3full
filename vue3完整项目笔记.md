@@ -180,11 +180,17 @@ git reset --hard 版本号
 npm install husky lint-staged -D
 ```
 
-package.json配置script
+初始化husky，生成 .husky 文件夹
 
+```cmd
+npx husky install
 ```
-  "prepare": "husky install",
-  "lint-staged": "lint-staged"
+
+配置pre-commit
+
+```cmd
+npx husky add .husky/pre-commit "npm run lint"
+
 ```
 
 
