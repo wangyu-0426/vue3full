@@ -135,10 +135,16 @@ git add *
 git add .
 ```
 
-提交
+提交全部修改
 
 ```cmd
 git commit -a
+```
+
+远程库
+
+```cmd
+git remote
 ```
 
 
