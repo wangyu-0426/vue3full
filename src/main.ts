@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import '@/styles/main.scss'
 import App from './App.vue'
 import router from './router/index'
 import store from './store/vuex'
@@ -20,5 +20,5 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.mount('#app')
 
 type a = number | string
-const b: a = {}
+const b: a = {} as any
 console.log(b)

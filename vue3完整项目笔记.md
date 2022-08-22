@@ -172,8 +172,6 @@ git reset --hard 版本号
 
 
 
-
-
 ##### 配置husky、lint-staged
 
 ```cmd
@@ -186,12 +184,24 @@ npm install husky lint-staged -D
 npx husky install
 ```
 
-配置pre-commit
-
-```cmd
-npx husky add .husky/pre-commit "npm run lint"
+新增文件 ./husky/pre-commit，包含提交前要运行的脚本
 
 ```
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint
+```
+
+> husky的pre-commit在commit前执行
+>
+> lint-staged对暂存区的文件执行校验
+
+lint-staged
+
+
+
+
 
 
 
