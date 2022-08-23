@@ -100,7 +100,7 @@ package.json
 > lint-staged: https://www.npmjs.com/package/lint-staged、https://github.com/okonet/lint-staged#readme
 > commitlint: https://commitlint.js.org/
 
-
+> **提交阶段代码检查 与 编码阶段自动格式化 分别使用不同工具。编码时可以使用volar或者prettier插件自动格式化。提交阶段使用lint检查，用prettier修复。同时注意处理不同工具之间的配置冲突**
 
 ##### 版本控制
 
@@ -622,9 +622,71 @@ https://staging-cn.vuejs.org/guide/scaling-up/testing.htm
 
 
 
-##### 优化
+安装依赖
 
-打包：大的拆，小的合
+```cmd
+npm install -D jest ts-jest @types/jest ts-node
+```
+
+jest.config.ts
+
+```cmd
+export default {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+}
+```
+
+ 工具函数 src\utils\sum.ts
+
+```ts
+export function sum(a: number, b: number) {
+    return a + b;
+}
+```
+
+测试代码 tests\unit\sum.test.ts
+
+```ts
+import { sum } from "../../src/utils/sum"
+test('测试sum：1 + 2 = 3', () => {
+    expect(sum(1, 2)).toBe(3);
+});
+```
+
+package.json脚本命令
+
+```json
+"scripts": {
+    "test": "jest"
+  },
+```
+
+
+
+
+
+
+
+##### 性能优化
+
+###### 代码层面
+
+
+
+###### 网络层面
+
+axios封装：取消重复请求、限制并发、限制重试次数、大文件分片上传...
+
+###### 业务层面
+
+防抖节流、事件解绑、长列表（懒加载、虚拟滚动、分页...）、首屏优化、组件懒加载、减少组件重复渲染
+
+###### 打包
+
+压缩代码和静态资源体积，缩短打包时间，使用cdn
+
+> 大的拆，小的合
 
 vite.config.ts
 
@@ -668,3 +730,14 @@ https://www.npmjs.com/package/rollup-plugin-visualizer
 npm install rollup-plugin-visualizer -D
 ```
 
+vite.config.ts配置plugin
+
+```json
+    visualizer({
+      open: true,
+      gzipSize: true,
+      brotliSize: true
+    })
+```
+
+> 打包完成会默认在项目根目录生成stats.html并自动打开
