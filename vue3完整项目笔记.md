@@ -213,7 +213,7 @@ lint-staged
 npm install @types/node -D
 ```
 
-vite.config.ts，引入path，增加resolve。升级版插件不需要再修改tsconfig.json配置
+vite.config.ts，引入path，增加resolve
 
 ```ts
   resolve: {
@@ -221,6 +221,17 @@ vite.config.ts，引入path，增加resolve。升级版插件不需要再修改t
       "@": path.resolve(__dirname, 'src')
     }
   },
+```
+
+tsconfig.json配置路径，不然引入ts文件时会报错
+
+```json
+    "compilerOptions": {
+        "baseUrl": "./"  
+        "paths"： { // 
+            "@/*": ["src/*"]
+        }
+    }
 ```
 
 
@@ -616,13 +627,11 @@ staging模式下的import.meta.env对象
 
 https://staging-cn.vuejs.org/guide/scaling-up/testing.htm
 
-单测
-
-[Vitest](https://vitest.dev/)、[Peeky](https://peeky.dev/)、[Jest](https://jestjs.io/)
+单测 [Vitest](https://vitest.dev/)、[Peeky](https://peeky.dev/)、[Jest](https://jestjs.io/)
 
 
 
-安装依赖
+###### 单元测试，使用jest
 
 ```cmd
 npm install -D jest ts-jest @types/jest ts-node
@@ -662,9 +671,9 @@ package.json脚本命令
   },
 ```
 
+###### 组件测试
 
-
-
+https://cn.vuejs.org/guide/scaling-up/testing.html#component-testing
 
 
 

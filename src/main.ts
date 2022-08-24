@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import '@/styles/main.scss'
-import App from './App.vue'
-import router from './router/index'
-import store from './store/vuex'
+import App from '@/App.vue'
+import router from '@/router/index'
+import store from '@/store/vuex'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus';
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { useStore } from 'vuex' // 引入useStore 方法
-import usePiniaStore from '../store/pinia'
+import usePiniaStore from '@/store/pinia'
 const store = useStore()  // 该方法用于返回store 实例
 const piniaStore = usePiniaStore()
 </script>

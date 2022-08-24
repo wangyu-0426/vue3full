@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "vue-tsc --noEmit && eslint src/**/*.{js,jsx,vue,ts,tsx} --fix",
     "lint-staged": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "test-c": "jest --coverage"
   },
   "lint-staged": {
     "src/**/*.{jsx,txs,ts,js,json,css,md}": [
@@ -34,10 +35,13 @@
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "@vitejs/plugin-vue": "^3.0.3",
+    "@vue/test-utils": "^2.0.2",
+    "@vue/vue3-jest": "^28.1.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "husky": "^8.0.1",
     "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
     "lint-staged": "^13.0.3",
     "rollup-plugin-visualizer": "^5.7.1",
     "sass": "^1.54.4",
