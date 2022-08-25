@@ -1,5 +1,5 @@
 // helpers.spec.js
-import { increment } from '../../src/utils/helpers'
+import { increment } from '@/utils/helpers'
 
 describe('increment', () => {
     test('increments the current number by 1', () => {

@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
-import Component from '../../src/components/ComponentTest.vue';
-import Hello from '../../src/components/HelloWorld.vue';
+import Component from '@/components/ComponentTest.vue';
+import Hello from '@/components/HelloWorld.vue';
 
 describe('Component', () => {
-    test('is a Vue instance', () => {
+    test('Vue instance', () => {
         const wrapper = mount(Component, {
             props: {
                 name: 'myName',

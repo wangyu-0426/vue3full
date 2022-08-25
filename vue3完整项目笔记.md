@@ -631,22 +631,76 @@ https://staging-cn.vuejs.org/guide/scaling-up/testing.htm
 
 
 
-###### 单元测试，使用jest
+###### 单元测试
 
-```cmd
-npm install -D jest ts-jest @types/jest ts-node
+安装依赖，配置jest
+
+https://blog.csdn.net/weixin_39559449/article/details/126465458
+
+```
+npm install babel-jest@27 jest@27 ts-jest@27 -D
+npm install @babel/core @babel/preset-env babel-plugin-transform-es2015-modules-commonjs @vue/test-utils @vue/vue3-jest jest-transform-stub -D
 ```
 
-jest.config.ts
+jest.config.js
 
-```cmd
+```js
 export default {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-}
+    preset: 'ts-jest',
+    roots: ['<rootDir>/tests/'],
+    clearMocks: true,
+    moduleDirectories: ['node_modules', 'src'],
+    moduleFileExtensions: ['js', 'ts', 'vue', 'tsx', 'jsx', 'json', 'node'],
+    modulePaths: ['<rootDir>/src', '<rootDir>/node_modules'],
+    testMatch: [
+        '**/tests/**/*.[jt]s?(x)',
+        '**/?(*.)+(spec|test).[tj]s?(x)',
+        '(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$',
+    ],
+    testPathIgnorePatterns: [
+        '<rootDir>/tests/server/',
+        '<rootDir>/tests/__mocks__/',
+        '/node_modules/',
+    ],
+    transform: {
+        '^.+\\.ts?$': 'ts-jest',
+        '^.+\\.vue$': '@vue/vue3-jest',// 使用 vue-jest 帮助测试 .vue 文件
+        '^.+\\.(js|jsx)?$': 'babel-jest',// 遇到 js jsx 等转成 es5
+        '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',// 遇到 css 等转为字符串 不作测试
+    },
+    transformIgnorePatterns: ['<rootDir>/tests/__mocks__/', '/node_modules/'],
+    // A map from regular expressions to module names that allow to stub out resources with a single module
+    moduleNameMapper: {
+        '\\.(vs|fs|vert|frag|glsl|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+            '<rootDir>/tests/__mocks__/fileMock.ts',
+        '\\.(sass|s?css|less)$': '<rootDir>/tests/__mocks__/styleMock.ts',
+        '\\?worker$': '<rootDir>/tests/__mocks__/workerMock.ts',
+        '^/@/(.*)$': '<rootDir>/src/$1',
+    },
+    testEnvironment: 'jsdom',
+    verbose: true,
+    collectCoverage: false,
+    coverageDirectory: 'coverage',
+    collectCoverageFrom: ['src/**/*.{js,ts,vue}'],
+    coveragePathIgnorePatterns: ['^.+\\.d\\.ts$'],
+};
 ```
 
- 工具函数 src\utils\sum.ts
+babel.config.cjs
+
+```js
+module.exports = {
+  presets: [
+      [
+          "@babel/preset-env",
+          { targets: {node: "current"}}
+      ]
+  ],
+  plugins: ["transform-es2015-modules-commonjs"]
+};
+```
+
+工具函数 src\utils\sum.ts
 
 ```ts
 export function sum(a: number, b: number) {
@@ -674,6 +728,42 @@ package.json脚本命令
 ###### 组件测试
 
 https://cn.vuejs.org/guide/scaling-up/testing.html#component-testing
+
+hello.test.js
+
+```js
+import { mount } from '@vue/test-utils';
+import Component from '../../src/components/ComponentTest.vue';
+import Hello from '../../src/components/HelloWorld.vue';
+
+describe('Component', () => {
+    test('is a Vue instance', () => {
+        const wrapper = mount(Component, {
+            props: {
+                name: 'myName',
+            },
+        });
+        // expect(wrapper.classes()).toContain('bar')
+        expect(wrapper.vm.count).toBe(0);
+        const button = wrapper.find('button');
+        button.trigger('click');
+        expect(wrapper.vm.count).toBe(1);
+        expect(wrapper.find('.msg').text()).toBe('hello');
+        expect(wrapper.find('.name').text()).toBe('myName');
+        wrapper.unmount();
+    });
+    test("hello", () => {
+        const wrapper = mount(Hello, {
+            props: {
+                msg: "message!!!"
+            }
+        })
+        // console.log(wrapper)
+        // console.log(wrapper.html())
+        expect(wrapper.html()).toContain('message!!!')
+    })
+});
+```
 
 
 
